@@ -24,7 +24,7 @@ function App() {
   //This fuction gets the remote ip address of the client
   const getIp = async () => {
     try {
-      const res = await fetch("http://api.ipify.org/?format=json", {method: 'GET'}).then(response => response.json()).then(data => {setIp(data.ip)});
+      const res = await fetch("https://geolocation-db.com/json/f6b71820-809c-11eb-95f1-01287ca1dfdd", {method: 'GET'}).then(response => response.json()).then(data => {setIp(data.IP)});
     } catch (err) {
       console.log(err);
     }

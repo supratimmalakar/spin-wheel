@@ -12,9 +12,9 @@
     --wheel-border-size: 5px;
 
     --PI: 3.14159265358979;
-    --nb-item: 0;
-    --item-nb: 0;
-    --selected-item: 0;
+    --nb-item: 8;
+    /* --item-nb: 0;
+    --selected-item: 0; */
     --nb-turn: 5;
     --spinning-duration: 4s;
     --reset-duration: 0.3s;
