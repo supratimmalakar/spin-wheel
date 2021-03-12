@@ -1,6 +1,19 @@
-# Getting Started with Create React App
+# Getting Started with spin-wheel
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created using ReactJS.
+
+## Run Locally
+
+1) Clone the repository to your local system.
+2) Open the root directory.
+3) Run the code 'npm install' in your terminal.
+4) Now all the libraries are installed and ready to go.
+5) Run 'npm start' in terminal to start the app on your local browser.
+
+## Google Spreadsheet Link
+
+This app posts client IP address, timestamp of a spin and index of outcome of the result to a google spreadsheet.
+Link:- https://docs.google.com/spreadsheets/d/1m02nwidghIASNTzgYMi5QMGZGhD2I6BFkQuauTS51vU/edit#gid=0
 
 ## Available Scripts
 
