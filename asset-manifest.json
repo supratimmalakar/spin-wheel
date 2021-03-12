@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/spin-wheel/static/css/main.4b869176.chunk.css",
+    "main.js": "/spin-wheel/static/js/main.569a1158.chunk.js",
+    "main.js.map": "/spin-wheel/static/js/main.569a1158.chunk.js.map",
+    "runtime-main.js": "/spin-wheel/static/js/runtime-main.a8850f9b.js",
+    "runtime-main.js.map": "/spin-wheel/static/js/runtime-main.a8850f9b.js.map",
+    "static/js/2.4f44e9c2.chunk.js": "/spin-wheel/static/js/2.4f44e9c2.chunk.js",
+    "static/js/2.4f44e9c2.chunk.js.map": "/spin-wheel/static/js/2.4f44e9c2.chunk.js.map",
+    "static/js/3.f1b3d98d.chunk.js": "/spin-wheel/static/js/3.f1b3d98d.chunk.js",
+    "static/js/3.f1b3d98d.chunk.js.map": "/spin-wheel/static/js/3.f1b3d98d.chunk.js.map",
+    "index.html": "/spin-wheel/index.html",
+    "static/css/main.4b869176.chunk.css.map": "/spin-wheel/static/css/main.4b869176.chunk.css.map",
+    "static/js/2.4f44e9c2.chunk.js.LICENSE.txt": "/spin-wheel/static/js/2.4f44e9c2.chunk.js.LICENSE.txt",
+    "static/media/Wheel.css": "/spin-wheel/static/media/Metropolis-Regular.67a1988d.otf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a8850f9b.js",
+    "static/js/2.4f44e9c2.chunk.js",
+    "static/css/main.4b869176.chunk.css",
+    "static/js/main.569a1158.chunk.js"
+  ]
+}
