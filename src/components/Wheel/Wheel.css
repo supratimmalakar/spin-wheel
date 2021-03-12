@@ -1,0 +1,312 @@
+@font-face {
+  font-family: "metropolis";
+  src: url(../../assets/Metropolis-Regular.otf);
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* defining variables */
+:root {
+    --wheel-size: 400px;
+    --wheel-slice-spacing: 50px;
+    --wheel-border-size: 5px;
+
+    --PI: 3.14159265358979;
+    --nb-item: 0;
+    --item-nb: 0;
+    --selected-item: 0;
+    --nb-turn: 5;
+    --spinning-duration: 4s;
+    --reset-duration: 0.3s;
+    --nb-selector-move: 3;
+  }
+  .wheel-main {
+    margin: 0 auto;
+  }
+  .wheel-sub {
+    margin: 0 auto;
+    padding: 25px;
+    padding-top: 0;
+    width: fit-content;
+  }
+  
+  .wheel-container {
+    display: block;
+    position: relative;
+    box-sizing: content-box;
+    width: calc(var(--wheel-size) + 2 * var(--wheel-border-size));
+    height: calc(var(--wheel-size) + 2 * var(--wheel-border-size));
+    padding: 3px;
+    margin: auto;
+    background-color: rgb(200, 200, 200);
+    border: solid rgb(200, 200, 200) 3px;
+    border-radius: 50%;
+    user-select: none;
+  }
+
+  .icon {
+      font-size: 50px;
+  }
+  
+  .selector {
+      display: block;
+      position: relative;
+      display: flex;
+      top: 33px;
+      flex-direction: column;
+      align-items: center;
+      width: fit-content;
+      height: fit-content;
+      /* transition: transform 0.3s; */
+      left: 46%;
+      z-index: 2;
+      /* transform: rotate(-30deg); */
+  }
+
+  .selector.spinning {
+    animation: selector-animation 0.25s;
+    animation-iteration-count: 15;
+  }
+
+/* selector spinning animation */
+
+  @keyframes selector-animation {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(-30deg);}
+  }
+
+  .wheel {
+    display: block;
+    position: relative;
+    box-sizing: content-box;
+    user-select: none;
+
+    margin: auto;
+    width: var(--wheel-size);
+    height: var(--wheel-size);
+    overflow: hidden;
+    border-radius: 50%;
+    border: solid #6d233f var(--wheel-border-size);
+    background-color: #65203A;
+    transition: transform var(--reset-duration);
+    transform: rotate(0deg);
+    cursor: pointer;
+  }
+
+  /* wheel spinning animation */
+
+  .wheel.spinning {
+    user-select: none;
+    transition: transform var(--spinning-duration);
+    transform: rotate(
+      calc(
+        var(--nb-turn) * 360deg +
+          (-360deg * var(--selected-item) / var(--nb-item, 1) - 90deg)
+      )
+    );
+  }
+
+  .dot-rotate {
+    transform: rotate(90deg);
+    overflow: hidden;
+
+  }
+
+  .dot-container {
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    z-index: 4;
+    overflow: hidden;
+
+  
+    /* position of items*/
+    top: 50%;
+    left: 50%;
+    width: 86%;
+    height: fit-content;
+    transform-origin: center left;
+    transform: translateY(-50%)
+      rotate(
+        calc(
+          var(--item-nb) * (360deg  / var(--nb-item, 1)) 
+          )
+        );
+      /* transform: skewY(60deg) rotate(22.5deg); */
+  }
+
+  .dot {
+    margin:50px 40px;
+    font-size: 10px;
+    overflow: hidden;
+  }
+
+  
+  .wheel::after {
+    display: block;
+    position: absolute;
+    content: "";
+    background-color: #FFDDA1;
+    width: 100px;
+    height: 100px;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+  }
+
+  .spin {
+    font-family: metropolis;
+    position: absolute;
+    top: 42%;
+    left: 44%;
+    z-index: 7;
+    color: rgba(0,0,0,0.7);
+  }
+
+  .wheel::before {
+    display: block;
+    position: absolute;
+    content: "";
+    background-color: #FFDDA1;
+    box-shadow: 2px 2px 1.5px 1.5px #caaf80;
+    width: 90px;
+    height: 90px;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+  }
+
+/* aligning each wheel item */
+
+  .wheel-item {
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    z-index: 2;
+  
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    transform-origin: center left;
+    transform: translateY(-50%)
+      rotate(calc(var(--item-nb) * (360deg / var(--nb-item, 1))));
+
+    color: white;
+    text-align: center;
+    padding: 0 25px 0 50px;
+    font-family: metropolis;
+  }
+
+  .wheel-item .text {
+    font-size: 20px;
+  }
+  
+  .wheel-item:before {
+    content: " ";
+    /* display: block; */
+    position: absolute;
+    box-sizing: border-box;
+    z-index: -1;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-left: 0px;
+    opacity: 0.08;
+
+  /* giving border to each slice */
+
+    --slice-max-width: calc(
+      var(--PI) * var(--wheel-size)
+    );
+    --slice-width: calc(
+      (var(--slice-max-width) / var(--nb-item)) - var(--wheel-slice-spacing)/10
+    );
+    border: solid transparent calc(var(--slice-width) / 2);
+
+    border-left: solid transparent 0;
+
+    border-right: solid white calc(var(--wheel-size) / 2);
+  }
+
+
+  @media screen and (max-width: 414px) {
+    :root {
+      --wheel-font: "Lato", "Quicksand", sans-serif;
+      --wheel-size: 300px;
+      --wheel-slice-spacing: 40px;
+      --wheel-border-size: 3px;
+    }
+
+    .wheel::after {
+      width: 80px;
+      height: 80px;
+    }
+
+    .wheel::before{
+      width: 70px;
+      height: 70px;
+    }
+
+    .spin {
+      top: 42%;
+      left: 44%;
+      font-size: 18px;
+    }
+
+    .dot {
+      margin:45px 35px;
+    }
+
+    .icon {
+      font-size: 40px;
+    }
+
+    .selector {
+      top: 20px;
+    }
+
+    .wheel-item .text {
+      font-size: 14px;
+    }
+
+    .wheel-sub {
+      padding-right: 4px;
+      padding-left: 4px;
+      outline: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .wheel {
+      outline: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .wheel.spinning {
+      user-select: none;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .wheel-container {  
+      outline: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .wheel-main {
+      outline: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+
+
+  
